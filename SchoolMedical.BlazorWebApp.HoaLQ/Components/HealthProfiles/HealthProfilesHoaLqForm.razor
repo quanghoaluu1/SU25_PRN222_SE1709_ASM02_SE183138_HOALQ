@@ -1,0 +1,175 @@
+﻿@page "/HealthProfiles/HealthProfilesForm/{HealthProfileHoaLqid:int?}"
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using SchoolMedical.Repositories.HoaLQ.Models
+@using ValidationSummary = Microsoft.AspNetCore.Components.Forms.ValidationSummary
+
+<h3>@(IsEditMode ? "Chỉnh sửa hồ sơ sức khỏe" : "Tạo mới hồ sơ sức khỏe")</h3>
+
+<EditForm Model="@HealthProfilesHoaLq" FormName="HealthProfileForm" OnValidSubmit="async() => await HandleValidSubmit()">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                <div class="d-flex align-items-center mb-0">
+                    <strong class="me-2">Học sinh:</strong>
+                    @if (IsEditMode)
+                    {
+                        <span>@HealthProfilesHoaLq.Student?.StudentFullName</span>
+                        <input type="hidden" value="@HealthProfilesHoaLq.StudentId" />
+
+                    }
+                    else
+                    {
+                        if (StudentList.Count > 0)
+                        {
+                            <InputSelect @bind-Value="HealthProfilesHoaLq.StudentId" class="form-select form-select-sm w-auto" >
+                                <option value="">-- Chọn học sinh --</option>
+                                @foreach (var student in StudentList)
+                                {
+                                    <option value="@student.StudentsHoaLqid">@student.StudentFullName</option>
+                                }
+                            </InputSelect>
+                        }
+                    }
+                </div>
+            </h4>
+        </div>
+        <div class="card-body">
+            <input type="hidden" value="@HealthProfilesHoaLq.HealthProfileHoaLqid" />
+            
+            <!-- Row: Weight + Height -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Cân nặng</label>
+                    <InputNumber @bind-Value="HealthProfilesHoaLq.Weight" class="form-control" />
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.Weight)" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Chiều cao</label>
+                    <InputNumber @bind-Value="HealthProfilesHoaLq.Height" class="form-control" />
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.Height)" />
+                </div>
+            </div>
+
+            <!-- Row: Sight + Hearing -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Thị lực</label>
+                    <InputNumber @bind-Value="HealthProfilesHoaLq.Sight" class="form-control" />
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.Sight)" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Thính lực</label>
+                    <InputNumber @bind-Value="HealthProfilesHoaLq.Hearing" class="form-control" />
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.Hearing)" />
+                </div>
+            </div>
+
+            <!-- Row: Blood Pressure + Blood Type -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Huyết áp</label>
+                    <InputNumber @bind-Value="HealthProfilesHoaLq.BloodPressure" class="form-control" />
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.BloodPressure)" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Nhóm máu</label>
+                    <InputText @bind-Value="HealthProfilesHoaLq.BloodType" class="form-control" />
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.BloodType)" />
+                </div>
+            </div>
+
+            <!-- Row: Sex + DateOfBirth -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Giới tính</label>
+                    <InputSelect @bind-Value="HealthProfilesHoaLq.Sex" class="form-select">
+                        <option value="">-- Chọn Giới Tính --</option>
+                        <option value="true">Nam</option>
+                        <option value="false">Nữ</option>
+                    </InputSelect>
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.Sex)" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Giới tính</label>
+                    <InputDate @bind-Value="HealthProfilesHoaLq.DateOfBirth" class="form-control" />
+                    <ValidationMessage For="@(() => HealthProfilesHoaLq.DateOfBirth)" />
+                </div>
+            </div>
+
+            <!-- Fields -->
+            <div class="mb-3">
+                <label>Dị ứng</label>
+                <InputText @bind-Value="HealthProfilesHoaLq.Allergy" class="form-control" />
+                <ValidationMessage For="@(() => HealthProfilesHoaLq.Allergy)" />
+            </div>
+
+            <div class="mb-3">
+                <label>Bệnh mãn tínhe</label>
+                <InputText @bind-Value="HealthProfilesHoaLq.ChronicDisease" class="form-control" />
+                <ValidationMessage For="@(() => HealthProfilesHoaLq.ChronicDisease)" />
+            </div>
+
+            <div class="mb-3">
+                <label>Tiền sử bệnh</label>
+                <InputText @bind-Value="HealthProfilesHoaLq.MedicalHistory" class="form-control" />
+                <ValidationMessage For="@(() => HealthProfilesHoaLq.MedicalHistory)" />
+            </div>
+
+            <div class="mb-3">
+                <label>Tình trạng hiện tại</label>
+                <InputText @bind-Value="HealthProfilesHoaLq.CurrentMedical" class="form-control" />
+                <ValidationMessage For="@(() => HealthProfilesHoaLq.CurrentMedical)" />
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">Lưu</button>
+                @* <button type="button" class="btn btn-primary" @onclick="UpdateBySignalR">Update by SignalR</button> *@
+                <a href="/HealthProfiles/HealthProfilesList" class="btn btn-secondary ms-2">Quay về</a>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private bool IsEditMode => HealthProfileHoaLqid > 0;
+    private List<StudentsHoaLq> StudentList { get; set; } = new();
+    private HealthProfilesHoaLq HealthProfilesHoaLq = new();
+    List<HealthProfilesHoaLq> HealthProfilesHoaLqList { get; set; } = new List<HealthProfilesHoaLq>();
+    [Parameter]
+    public int HealthProfileHoaLqid { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+       StudentList = await ServiceProvider.StudentHoaLqService.GetAllAsync();
+        
+        if (IsEditMode)
+        {
+            HealthProfilesHoaLq = await ServiceProvider.HealthProfilesHoaLqService.GetByIdAsync(HealthProfileHoaLqid);
+        }
+        else
+        {
+            HealthProfilesHoaLq = new HealthProfilesHoaLq();
+        }
+        
+    }
+    private async Task HandleValidSubmit()
+    {
+        var result = IsEditMode
+            ? await ServiceProvider.HealthProfilesHoaLqService.UpdateAsync(HealthProfilesHoaLq)
+            : await ServiceProvider.HealthProfilesHoaLqService.CreateAsync(HealthProfilesHoaLq);
+        HealthProfilesHoaLqList.Insert(0, HealthProfilesHoaLq);
+        if (result is not null)
+        {
+            NavigationManager.NavigateTo("/HealthProfiles/HealthProfilesList");
+        }
+    }
+
+    private void UpdateBySignalR()
+    {
+        // Your SignalR update logic here
+    }
+}

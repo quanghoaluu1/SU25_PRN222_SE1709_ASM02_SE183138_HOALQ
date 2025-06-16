@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\quang\\OneDrive\\M\u00E1y t\u00EDnh\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0439B967-235B-44E8-8A9F-A99AFD68A125}|SchoolMedical.BlazorWebApp.HoaLQ\\SchoolMedical.BlazorWebApp.HoaLQ.csproj|c:\\users\\quang\\onedrive\\m\u00E1y t\u00EDnh\\su25_prn222_se1709_asm02_se183138_hoalq\\schoolmedical.blazorwebapp.hoalq\\components\\healthprofiles\\healthprofileshoalqdetail.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0439B967-235B-44E8-8A9F-A99AFD68A125}|SchoolMedical.BlazorWebApp.HoaLQ\\SchoolMedical.BlazorWebApp.HoaLQ.csproj|solutionrelative:schoolmedical.blazorwebapp.hoalq\\components\\healthprofiles\\healthprofileshoalqdetail.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0439B967-235B-44E8-8A9F-A99AFD68A125}|SchoolMedical.BlazorWebApp.HoaLQ\\SchoolMedical.BlazorWebApp.HoaLQ.csproj|c:\\users\\quang\\onedrive\\m\u00E1y t\u00EDnh\\su25_prn222_se1709_asm02_se183138_hoalq\\schoolmedical.blazorwebapp.hoalq\\components\\healthprofiles\\healthprofileshoalqform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0439B967-235B-44E8-8A9F-A99AFD68A125}|SchoolMedical.BlazorWebApp.HoaLQ\\SchoolMedical.BlazorWebApp.HoaLQ.csproj|solutionrelative:schoolmedical.blazorwebapp.hoalq\\components\\healthprofiles\\healthprofileshoalqform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0439B967-235B-44E8-8A9F-A99AFD68A125}|SchoolMedical.BlazorWebApp.HoaLQ\\SchoolMedical.BlazorWebApp.HoaLQ.csproj|c:\\users\\quang\\onedrive\\m\u00E1y t\u00EDnh\\su25_prn222_se1709_asm02_se183138_hoalq\\schoolmedical.blazorwebapp.hoalq\\components\\healthprofiles\\healthprofileshoalqlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0439B967-235B-44E8-8A9F-A99AFD68A125}|SchoolMedical.BlazorWebApp.HoaLQ\\SchoolMedical.BlazorWebApp.HoaLQ.csproj|solutionrelative:schoolmedical.blazorwebapp.hoalq\\components\\healthprofiles\\healthprofileshoalqlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HealthProfilesHoaLqDetail.razor",
+              "DocumentMoniker": "C:\\Users\\quang\\OneDrive\\M\u00E1y t\u00EDnh\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqDetail.razor",
+              "RelativeDocumentMoniker": "SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqDetail.razor",
+              "ToolTip": "C:\\Users\\quang\\OneDrive\\M\u00E1y t\u00EDnh\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqDetail.razor",
+              "RelativeToolTip": "SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqDetail.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-12T09:03:06.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HealthProfilesHoaLqForm.razor",
+              "DocumentMoniker": "C:\\Users\\quang\\OneDrive\\M\u00E1y t\u00EDnh\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqForm.razor",
+              "RelativeDocumentMoniker": "SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqForm.razor",
+              "ToolTip": "C:\\Users\\quang\\OneDrive\\M\u00E1y t\u00EDnh\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqForm.razor",
+              "RelativeToolTip": "SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqForm.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-12T09:02:48.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HealthProfilesHoaLqList.razor",
+              "DocumentMoniker": "C:\\Users\\quang\\OneDrive\\M\u00E1y t\u00EDnh\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqList.razor",
+              "RelativeDocumentMoniker": "SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqList.razor",
+              "ToolTip": "C:\\Users\\quang\\OneDrive\\M\u00E1y t\u00EDnh\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqList.razor",
+              "RelativeToolTip": "SchoolMedical.BlazorWebApp.HoaLQ\\Components\\HealthProfiles\\HealthProfilesHoaLqList.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-12T09:02:33.633Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+﻿@page "/HealthProfiles/HealthProfilesDetail/{HealthProfileHoaLqid:int}"
+@using SchoolMedical.Repositories.HoaLQ.Models
+
+<h3>Chi tiết hồ sơ sức khỏe</h3>
+
+@if (HealthProfile == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="card shadow p-4 mb-4">
+    <div class="card-body">
+        <div class="row gy-3" id="HealthProfileId">
+            <div class="col-md-12">
+                <strong>Học sinh:</strong>
+                <span class="ms-2" id="studentName">
+                    @HealthProfile.Student.StudentFullName
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Cân nặng:</strong>
+                <span class="ms-2" id="weight">@HealthProfile.Weight</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Chiều cao:</strong>
+                <span class="ms-2" id="height">@HealthProfile.Height</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Thị lực:</strong>
+                <span class="ms-2" id="sight">@HealthProfile.Sight</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Thính lực:</strong>
+                <span class="ms-2" id="hearing">@HealthProfile.Hearing</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Huyết áp:</strong>
+                <span class="ms-2" id="bloodPressure">@HealthProfile.BloodPressure</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Dị ứng:</strong>
+                <span class="ms-2" id="allergy">@HealthProfile.Allergy</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Bệnh mãn tính:</strong>
+                <span class="ms-2" id="chronicDisease">@HealthProfile.ChronicDisease</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Tiền sử bệnh:</strong>
+                <span class="ms-2" id="medicalHistory">@HealthProfile.MedicalHistory</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Tình trạng hiện tại:</strong>
+                <span class="ms-2" id="currentMedical">@HealthProfile.CurrentMedical</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Nhóm máu:</strong>
+                <span class="ms-2" id="bloodType">@HealthProfile.BloodType</span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Giới tính:</strong>
+                <span class="ms-2 @(HealthProfile.Sex ? "text-primary" : "text-danger")" id="sex">
+                    @(HealthProfile.Sex ? "Nam" : "Nữ")
+                </span>
+            </div>
+
+            <div class="col-md-6">
+                <strong>Ngày sinh:</strong>
+                <span class="ms-2" id="dateOfBirth">
+                    @(HealthProfile.DateOfBirth.HasValue ? HealthProfile.DateOfBirth.Value.ToString("dd/MM/yyyy") : "--")
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="mt-4">
+        <!-- Cách 1: link trực tiếp -->
+        <a href="/HealthProfiles/HealthProfilesForm/@HealthProfile.HealthProfileHoaLqid"
+           class="btn btn-warning me-2">Edit</a>
+        <a href="/HealthProfiles/HealthProfilesList" class="btn btn-secondary">Back to List</a>
+
+        <!-- Cách 2: nút điều hướng bằng NavigationManager
+        <button class="btn btn-warning me-2" @onclick="Edit">Edit</button>
+        <button class="btn btn-secondary" @onclick="Back">Back to List</button>
+        -->
+    </div>
+}
+
+@code {
+    public HealthProfilesHoaLq HealthProfile;
+    [Parameter]
+    public int HealthProfileHoaLqid { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        HealthProfile = await ServiceProvider.HealthProfilesHoaLqService.GetByIdAsync(HealthProfileHoaLqid);
+    }
+}
