@@ -29,3 +29,4 @@ C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\Schoo
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Services.HoaLQ\obj\Debug\net8.0\refint\SchoolMedical.Services.HoaLQ.dll
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Services.HoaLQ\obj\Debug\net8.0\SchoolMedical.Services.HoaLQ.pdb
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Services.HoaLQ\obj\Debug\net8.0\ref\SchoolMedical.Services.HoaLQ.dll
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Services.HoaLQ\obj\Debug\net8.0\SchoolMedical.Services.HoaLQ.sourcelink.json

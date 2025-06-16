@@ -32,6 +32,7 @@ namespace SchoolMedical.Repositories.HoaLQ
         public async Task<HealthProfilesHoaLq> GetByIdAsync(int id)
         {
             var healthProfile = await _context.HealthProfilesHoaLqs
+                .AsNoTracking()
                 .Include(h => h.Student)
                 .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == id);
             return healthProfile ?? new HealthProfilesHoaLq();

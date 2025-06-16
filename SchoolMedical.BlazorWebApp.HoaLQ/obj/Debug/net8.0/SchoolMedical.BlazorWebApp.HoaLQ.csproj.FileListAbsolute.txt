@@ -68,8 +68,10 @@ C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\Schoo
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\bin\Debug\net8.0\SchoolMedical.Repositories.HoaLQ.pdb
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\SchoolMedical.BlazorWebApp.HoaLQ.csproj.AssemblyReference.cache
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\SchoolMe.9BD356C5.Up2Date
-C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\rpswa.dswa.cache.json
-C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\rjimswa.dswa.cache.json
-C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
-C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
-C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\SchoolMedical.BlazorWebApp.HoaLQ.sourcelink.json
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\staticwebassets\msbuild.SchoolMedical.BlazorWebApp.HoaLQ.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\staticwebassets\msbuild.SchoolMedical.BlazorWebApp.HoaLQ.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\staticwebassets\msbuild.build.SchoolMedical.BlazorWebApp.HoaLQ.props
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.SchoolMedical.BlazorWebApp.HoaLQ.props
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.SchoolMedical.BlazorWebApp.HoaLQ.props
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.BlazorWebApp.HoaLQ\obj\Debug\net8.0\staticwebassets.pack.json

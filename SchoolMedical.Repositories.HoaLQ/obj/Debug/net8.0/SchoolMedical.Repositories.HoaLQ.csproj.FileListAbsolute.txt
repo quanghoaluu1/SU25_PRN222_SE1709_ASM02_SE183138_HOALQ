@@ -27,3 +27,4 @@ C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\Schoo
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Repositories.HoaLQ\obj\Debug\net8.0\SchoolMedical.Repositories.HoaLQ.pdb
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Repositories.HoaLQ\obj\Debug\net8.0\SchoolMedical.Repositories.HoaLQ.genruntimeconfig.cache
 C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Repositories.HoaLQ\obj\Debug\net8.0\ref\SchoolMedical.Repositories.HoaLQ.dll
+C:\Users\quang\OneDrive\Máy tính\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\SchoolMedical.Repositories.HoaLQ\obj\Debug\net8.0\SchoolMedical.Repositories.HoaLQ.sourcelink.json
