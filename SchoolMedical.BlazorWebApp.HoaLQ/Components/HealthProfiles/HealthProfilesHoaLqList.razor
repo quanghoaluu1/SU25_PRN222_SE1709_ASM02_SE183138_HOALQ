@@ -17,32 +17,62 @@
 }
 else
 {
-    <table class="table table-bordered table-hover table-striped align-middle text-center shadow-sm rounded bg-white">
-        <thead class="table-dark">
-        <tr>
-            <th>STT</th>
-            <th>Học sinh</th>
-            <th>Chiều cao (cm)</th>
-            <th>Cân nặng (kg)</th>
-            <th>Giới tính</th>
-            <th>Ngày sinh</th>
-            <th>Thao tác</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var healthProfile in healthProfiles.Select((value, index) => new {value, index}))
-        {
+    <h3>Tìm kiếm Hồ sơ sức khỏe</h3>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <InputText @bind-Value="SearchModel.BloodType" class="form-control" placeholder="Nhóm máu" />
+        </div>
+        <div class="col-md-3">
+            <InputText @bind-Value="SearchModel.StudentName" class="form-control" placeholder="Tên học sinh" />
+        </div>
+        <div class="col-md-2">
+            <InputNumber @bind-Value="SearchModel.Weight" class="form-control" placeholder="Cân nặng" />
+        </div>
+        <div class="col-md-2">
+            <InputNumber @bind-Value="SearchModel.Height" class="form-control" placeholder="Chiều cao" />
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" @onclick="SearchAsync">Tìm kiếm</button>
+        </div>
+    </div>
+    
+        <table class="table table-bordered table-hover table-striped align-middle text-center shadow-sm rounded bg-white">
+            <thead class="table-dark">
             <tr>
-                <td>@(healthProfile.index + 1 )</td>
-                <td>@healthProfile.value.Student.StudentFullName</td>
-                <td>@healthProfile.value.Height</td>
-                <td>@healthProfile.value.Weight</td>
-                <td>
-                    <span class="@(healthProfile.value.Sex ? "text-primary" : "text-danger")">
-                        @(healthProfile.value.Sex ? "Nam" : "Nữ")
+                <th>STT</th>
+                <th>Học sinh</th>
+                <th>Chiều cao (cm)</th>
+                <th>Cân nặng (kg)</th>
+                <th>Nhóm máu</th>
+                <th>Giới tính
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill " viewBox="0 0 16 16">
+                        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+                    </svg>
+                </th>
+                <th>Ngày sinh</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var healthProfile in healthProfiles.Select((value, index) => new {value, index}))
+            {
+                <tr>
+                    <td>@(healthProfile.index + 1 )</td>
+                    <td>@healthProfile.value.Student.StudentFullName</td>
+                    <td>@healthProfile.value.Height</td>
+                    <td>@healthProfile.value.Weight</td>
+                    <td>
+                    <span class="@(string.IsNullOrEmpty(healthProfile.value.BloodType) ? "text-danger" : "text-primary")">
+                        @(string.IsNullOrEmpty(healthProfile.value.BloodType) ? "--" : healthProfile.value.BloodType)
                     </span>
-                </td>
-                <td>@(healthProfile.value.DateOfBirth.HasValue ? healthProfile.value.DateOfBirth.Value.ToString("dd/MM/yyyy") : "--")</td>
+                    </td>
+                    <td>
+                        <span class="@(healthProfile.value.Sex ? "text-primary" : "text-danger")">
+                            @(healthProfile.value.Sex ? "Nam" : "Nữ")
+                        </span>
+                    </td>
+                    <td>@(healthProfile.value.DateOfBirth.HasValue ? healthProfile.value.DateOfBirth.Value.ToString("dd/MM/yyyy") : "--")</td>
                 <td>
                     <div class="flex flex-row align-items-center gap-2">
                         <!-- Hàng trên: Chi tiết + Sửa -->
@@ -63,12 +93,26 @@ else
 }
 
 @code {
+    private class SearchModelDto
+    {
+        public string BloodType { get; set; } = string.Empty;
+        public string StudentName { get; set; } = string.Empty;
+        public int Weight { get; set; }
+        public int Height { get; set; }
+    }
+    private SearchModelDto SearchModel = new();
     private List<HealthProfilesHoaLq> healthProfiles = new();
     private bool isLoading = true;
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(500);
         healthProfiles = await ServiceProvider.HealthProfilesHoaLqService.GetAllAsync();
+        isLoading = false;
+    }
+    private async Task SearchAsync()
+    {
+        isLoading = true;
+        healthProfiles = await ServiceProvider.HealthProfilesHoaLqService.SearchAsync(SearchModel.BloodType, SearchModel.StudentName, SearchModel.Weight, SearchModel.Height);
         isLoading = false;
     }
 }

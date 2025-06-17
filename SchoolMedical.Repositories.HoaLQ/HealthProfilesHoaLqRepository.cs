@@ -38,16 +38,24 @@ namespace SchoolMedical.Repositories.HoaLQ
             return healthProfile ?? new HealthProfilesHoaLq();
         }
 
-        public async Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string searchCode, int sight)
+        public async Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int weight, int height)
         {
             var healthProfiles = await _context.HealthProfilesHoaLqs.Include(h => h.Student).Where(h => (h.BloodType.Contains(bloodType) || string.IsNullOrEmpty(bloodType))
-            && (h.Student.StudentCode.Contains(searchCode) || string.IsNullOrEmpty(searchCode))
-            && (h.Sight == sight || sight == 0))
+            && (h.Student.StudentFullName.Contains(studentName) || string.IsNullOrEmpty(studentName))
+            && (h.Sight == weight || weight == 0)
+            && (h.Height == height || height == 0))
                 .ToListAsync();
 
             return healthProfiles ?? new List<HealthProfilesHoaLq>();
         }
-        
+
+        public async Task<List<HealthProfilesHoaLq>> FilterBySexAsync(bool? sex)
+        {
+                return await _context.HealthProfilesHoaLqs
+                    .Include(h => h.Student)
+                    .Where(h => h.Sex.Equals(sex))
+                    .ToListAsync();
+        }
         public new async Task<HealthProfilesHoaLq> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
         {
             var entity = _context.HealthProfilesHoaLqs.Add(healthProfilesHoaLq);
