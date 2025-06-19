@@ -7,7 +7,7 @@ public interface IHealthProfilesHoaLqService
 {
     Task<List<HealthProfilesHoaLq>> GetAllAsync();
     Task<HealthProfilesHoaLq> GetByIdAsync(int id);
-    Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int weight, int height);
+    Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int? weight, int? height, bool? sex);
     Task<List<HealthProfilesHoaLq>> FilterBySexAsync(bool? sex);
     Task<HealthProfilesHoaLq> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq);
     Task<HealthProfilesHoaLq> UpdateAsync(HealthProfilesHoaLq healthProfilesHoaLq);
@@ -31,9 +31,9 @@ public class HealthProfilesHoaLqService: IHealthProfilesHoaLqService
         return await _unitOfWork.HealthProfilesHoaLqRepository.GetByIdAsync(id);
     }
     
-    public async Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int weight, int height)
+    public async Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int? weight, int? height, bool? sex)
     {
-        return await _unitOfWork.HealthProfilesHoaLqRepository.SearchAsync(bloodType, studentName, weight, height);
+        return await _unitOfWork.HealthProfilesHoaLqRepository.SearchAsync(bloodType, studentName, weight, height, sex);
     }
 
     public async Task<List<HealthProfilesHoaLq>> FilterBySexAsync(bool? sex)

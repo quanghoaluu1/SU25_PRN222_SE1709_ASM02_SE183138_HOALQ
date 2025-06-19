@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolMedical.BlazorWebApp.HoaLQ")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c775bbdb075554ee43eba6ba035bfacb7f0b76a5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01e75006db009133d9f8f577360021e138d8412a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolMedical.BlazorWebApp.HoaLQ")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolMedical.BlazorWebApp.HoaLQ")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

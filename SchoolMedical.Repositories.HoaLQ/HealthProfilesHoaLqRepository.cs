@@ -11,7 +11,6 @@ namespace SchoolMedical.Repositories.HoaLQ
 {
     public class HealthProfilesHoaLqRepository: GenericRepository<HealthProfilesHoaLq>
     {
-        private readonly IUnitOfWork _unitOfWork;
         public HealthProfilesHoaLqRepository()
         {
             _context ??= new SU25_PRN222_SE1709_G1_SchoolMedicalContext();
@@ -29,24 +28,46 @@ namespace SchoolMedical.Repositories.HoaLQ
                 .ToListAsync() ?? new List<HealthProfilesHoaLq>();
         }
 
-        public async Task<HealthProfilesHoaLq> GetByIdAsync(int id)
+        public new async Task<HealthProfilesHoaLq> GetByIdAsync(int id)
         {
             var healthProfile = await _context.HealthProfilesHoaLqs
-                .AsNoTracking()
                 .Include(h => h.Student)
                 .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == id);
             return healthProfile ?? new HealthProfilesHoaLq();
         }
 
-        public async Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int weight, int height)
+        public async Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int? weight, int? height, bool? sex)
         {
-            var healthProfiles = await _context.HealthProfilesHoaLqs.Include(h => h.Student).Where(h => (h.BloodType.Contains(bloodType) || string.IsNullOrEmpty(bloodType))
-            && (h.Student.StudentFullName.Contains(studentName) || string.IsNullOrEmpty(studentName))
-            && (h.Sight == weight || weight == 0)
-            && (h.Height == height || height == 0))
-                .ToListAsync();
+            var query = _context.HealthProfilesHoaLqs
+                .Include(p => p.Student)
+                .AsQueryable();
 
-            return healthProfiles ?? new List<HealthProfilesHoaLq>();
+            if (!string.IsNullOrWhiteSpace(bloodType))
+            {
+                query = query.Where(p => p.BloodType.Contains(bloodType));
+            }
+
+            if (!string.IsNullOrWhiteSpace(studentName))
+            {
+                query = query.Where(p => p.Student.StudentFullName.Contains(studentName));
+            }
+
+            if (weight.HasValue)
+            {
+                query = query.Where(p => p.Weight == weight.Value);
+            }
+
+            if (height.HasValue)
+            {
+                query = query.Where(p => p.Height == height.Value);
+            }
+    
+            if (sex.HasValue)
+            {
+                query = query.Where(p => p.Sex == sex.Value);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<List<HealthProfilesHoaLq>> FilterBySexAsync(bool? sex)

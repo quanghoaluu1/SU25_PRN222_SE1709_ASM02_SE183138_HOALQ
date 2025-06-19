@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zSoSYL2zD0g=",
+  "dgSpecHash": "51CyI7xWYws=",
   "success": true,
   "projectFilePath": "C:\\Users\\quang\\OneDrive\\Máy tính\\SU25_PRN222_SE1709_ASM02_SE183138_HOALQ\\SchoolMedical.Services.HoaLQ\\SchoolMedical.Services.HoaLQ.csproj",
   "expectedPackageFiles": [
@@ -64,7 +64,10 @@
     "C:\\Users\\quang\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\quang\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
     "C:\\Users\\quang\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\quang\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\quang\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\quang\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.17\\microsoft.netcore.app.ref.8.0.17.nupkg.sha512",
+    "C:\\Users\\quang\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.17\\microsoft.windowsdesktop.app.ref.8.0.17.nupkg.sha512",
+    "C:\\Users\\quang\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.17\\microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512"
   ],
   "logs": []
 }
