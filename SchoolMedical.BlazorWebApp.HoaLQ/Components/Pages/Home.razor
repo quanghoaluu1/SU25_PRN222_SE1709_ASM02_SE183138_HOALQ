@@ -1,7 +1,16 @@
 ﻿@page "/"
+@attribute [Authorize]
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Chào mừng bạn đã đăng nhập!</h1>
 
-Welcome to your new app.
+<AuthorizeView>
+    <Authorized>
+        <p>Thông tin của bạn:</p>
+        <ul>
+            <li><strong>Tên đầy đủ:</strong> @context.User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.GivenName)?.Value</li>
+            <li><strong>Vai trò:</strong> @context.User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value</li>
+        </ul>
+    </Authorized>
+</AuthorizeView>

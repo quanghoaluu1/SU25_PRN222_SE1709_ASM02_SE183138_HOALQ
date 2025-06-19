@@ -1,0 +1,73 @@
+﻿@page "/login"
+@using SchoolMedical.Repositories.HoaLQ.Auth
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navigationManager
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="text-center">Đăng nhập</h3>
+            </div>
+            <div class="card-body">
+                <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+                    <DataAnnotationsValidator />
+                    
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger">@errorMessage</div>
+                    }
+
+                    <div class="mb-3">
+                        <label class="form-label">Tên đăng nhập</label>
+                        <InputText @bind-Value="loginModel.Username" class="form-control" />
+                        <ValidationMessage For="@(() => loginModel.Username)" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu</label>
+                        <InputText @bind-Value="loginModel.Password" type="password" class="form-control" />
+                        <ValidationMessage For="@(() => loginModel.Password)" />
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private LoginModel loginModel = new();
+    private string errorMessage;
+
+    private async Task HandleLogin()
+    {
+        // Gọi hàm của bạn để kiểm tra user
+        var user = await ServiceProvider.SystemUserAccountService.GetUserByUserNameAndPassword(loginModel.Username, loginModel.Password);
+
+        if (user != null)
+        {
+            // Ép kiểu authStateProvider về CustomAuthStateProvider để gọi hàm UpdateAuthenticationState
+            var customAuthStateProvider = (CustomAuthStateProvider)authStateProvider;
+            await customAuthStateProvider.UpdateAuthenticationState(user);
+            
+            // Đăng nhập thành công, chuyển hướng về trang chủ
+            navigationManager.NavigateTo("/");
+        }
+        else
+        {
+            errorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
+        }
+    }
+
+    public class LoginModel
+    {
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Vui lòng nhập tên đăng nhập")]
+        public string Username { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        public string Password { get; set; }
+    }
+}

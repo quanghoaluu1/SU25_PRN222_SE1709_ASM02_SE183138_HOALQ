@@ -9,7 +9,12 @@
 @using SchoolMedical.BlazorWebApp.HoaLQ
 @using SchoolMedical.BlazorWebApp.HoaLQ.Components
 @using SchoolMedical.Services.HoaLQ
+@using Microsoft.AspNetCore.Components.Authorization 
+@using Microsoft.AspNetCore.Authorization
+
 
 @inject NavigationManager NavigationManager
 @inject IServiceProviders ServiceProvider 
+@inject ISystemUserAccountService SystemUserAccountService
 @inject IJSRuntime JsRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider

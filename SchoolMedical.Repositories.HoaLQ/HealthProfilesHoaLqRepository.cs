@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SchoolMedical.Repositories.HoaLQ.Basic;
+using SchoolMedical.Repositories.HoaLQ.Helper;
 using SchoolMedical.Repositories.HoaLQ.Models;
 
 namespace SchoolMedical.Repositories.HoaLQ
@@ -31,12 +32,13 @@ namespace SchoolMedical.Repositories.HoaLQ
         public new async Task<HealthProfilesHoaLq> GetByIdAsync(int id)
         {
             var healthProfile = await _context.HealthProfilesHoaLqs
+                .AsNoTracking()
                 .Include(h => h.Student)
                 .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == id);
             return healthProfile ?? new HealthProfilesHoaLq();
         }
 
-        public async Task<List<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int? weight, int? height, bool? sex)
+        public async Task<PaginatedList<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int? weight, int? height, bool? sex, int pageNumber, int pageSize)
         {
             var query = _context.HealthProfilesHoaLqs
                 .Include(p => p.Student)
@@ -66,8 +68,10 @@ namespace SchoolMedical.Repositories.HoaLQ
             {
                 query = query.Where(p => p.Sex == sex.Value);
             }
+            var totalCount = await query.CountAsync();
+            var items = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            return await query.ToListAsync();
+            return new PaginatedList<HealthProfilesHoaLq>(items, totalCount);
         }
 
         public async Task<List<HealthProfilesHoaLq>> FilterBySexAsync(bool? sex)
@@ -81,33 +85,9 @@ namespace SchoolMedical.Repositories.HoaLQ
         {
             var entity = _context.HealthProfilesHoaLqs.Add(healthProfilesHoaLq);
             await _context.SaveChangesAsync();
-
             var result = await _context.HealthProfilesHoaLqs
-                .Where(h => h.HealthProfileHoaLqid == entity.Entity.HealthProfileHoaLqid)
-                .Select(h => new HealthProfilesHoaLq
-                {
-                    HealthProfileHoaLqid = h.HealthProfileHoaLqid,
-                    Weight = h.Weight,
-                    Height = h.Height,
-                    BloodPressure = h.BloodPressure,
-                    Allergy = h.Allergy,
-                    ChronicDisease = h.ChronicDisease,
-                    MedicalHistory = h.MedicalHistory,
-                    CurrentMedical = h.CurrentMedical,
-                    BloodType = h.BloodType,
-                    Sight = h.Sight,
-                    Hearing = h.Hearing,
-                    Sex = h.Sex,
-                    DateOfBirth = h.DateOfBirth,
-                    StudentId = h.StudentId,
-            
-                    Student = new StudentsHoaLq()
-                    {
-                        StudentsHoaLqid = h.Student.StudentsHoaLqid,
-                        StudentFullName = h.Student.StudentFullName
-                    }
-                })
-                .FirstOrDefaultAsync();
+                .Include(h => h.Student) // <-- Dòng quan trọng để lấy dữ liệu Student
+                .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == healthProfilesHoaLq.HealthProfileHoaLqid);
 
             return result;
         }
@@ -117,33 +97,35 @@ namespace SchoolMedical.Repositories.HoaLQ
             var entity = _context.HealthProfilesHoaLqs.Update(healthProfilesHoaLq);
             await _context.SaveChangesAsync();
 
+            // var result = await _context.HealthProfilesHoaLqs
+            //     .Where(h => h.HealthProfileHoaLqid == entity.Entity.HealthProfileHoaLqid)
+            //     .Select(h => new HealthProfilesHoaLq
+            //     {
+            //         HealthProfileHoaLqid = h.HealthProfileHoaLqid,
+            //         Weight = h.Weight,
+            //         Height = h.Height,
+            //         BloodPressure = h.BloodPressure,
+            //         Allergy = h.Allergy,
+            //         ChronicDisease = h.ChronicDisease,
+            //         MedicalHistory = h.MedicalHistory,
+            //         CurrentMedical = h.CurrentMedical,
+            //         BloodType = h.BloodType,
+            //         Sight = h.Sight,
+            //         Hearing = h.Hearing,
+            //         Sex = h.Sex,
+            //         DateOfBirth = h.DateOfBirth,
+            //         StudentId = h.StudentId,
+            //
+            //         Student = new StudentsHoaLq()
+            //         {
+            //             StudentsHoaLqid = h.Student.StudentsHoaLqid,
+            //             StudentFullName = h.Student.StudentFullName
+            //         }
+            //     })
+            //     .FirstOrDefaultAsync();
             var result = await _context.HealthProfilesHoaLqs
-                .Where(h => h.HealthProfileHoaLqid == entity.Entity.HealthProfileHoaLqid)
-                .Select(h => new HealthProfilesHoaLq
-                {
-                    HealthProfileHoaLqid = h.HealthProfileHoaLqid,
-                    Weight = h.Weight,
-                    Height = h.Height,
-                    BloodPressure = h.BloodPressure,
-                    Allergy = h.Allergy,
-                    ChronicDisease = h.ChronicDisease,
-                    MedicalHistory = h.MedicalHistory,
-                    CurrentMedical = h.CurrentMedical,
-                    BloodType = h.BloodType,
-                    Sight = h.Sight,
-                    Hearing = h.Hearing,
-                    Sex = h.Sex,
-                    DateOfBirth = h.DateOfBirth,
-                    StudentId = h.StudentId,
-
-                    Student = new StudentsHoaLq()
-                    {
-                        StudentsHoaLqid = h.Student.StudentsHoaLqid,
-                        StudentFullName = h.Student.StudentFullName
-                    }
-                })
-                .FirstOrDefaultAsync();
-
+                .Include(h => h.Student) // <-- Dòng quan trọng để lấy dữ liệu Student
+                .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == healthProfilesHoaLq.HealthProfileHoaLqid);
             return result;
         }
     }
