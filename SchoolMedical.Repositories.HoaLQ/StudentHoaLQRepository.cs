@@ -12,6 +12,6 @@ public class StudentHoaLQRepository: GenericRepository<StudentsHoaLq>
 
     public async Task<List<StudentsHoaLq>> GetAllAsync()
     {
-        return await _context.StudentsHoaLqs.ToListAsync() ?? new List<StudentsHoaLq>();
+        return await _context.StudentsHoaLqs.AsNoTracking().ToListAsync();
     }
 }

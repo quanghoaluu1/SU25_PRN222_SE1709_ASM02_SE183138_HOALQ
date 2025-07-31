@@ -10,33 +10,67 @@ public partial class HealthProfilesHoaLq
 {
     public int HealthProfileHoaLqid { get; set; }
 
-    [Required(ErrorMessage = "Please choose student")]
-    public int StudentId { get; set; }
+    [Required(ErrorMessage = "Vui lòng chọn học sinh.")]
+    [Display(Name = "Học sinh")]
+    public int? StudentId { get; set; }
 
-    [Range(0, 100, ErrorMessage = "Overweight, go away!")]
+    [Required(ErrorMessage = "Vui lòng nhập cân nặng.")]
+    [Display(Name = "Cân nặng (kg)")]
+    [Range(10, 200, ErrorMessage = "Cân nặng phải trong khoảng từ 10 đến 200 kg.")]
     public decimal? Weight { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập chiều cao.")]
+    [Display(Name = "Chiều cao (m)")]
+    [Range(0.5, 2.5, ErrorMessage = "Chiều cao phải trong khoảng từ 0.5 đến 2.5 mét.")]
     public decimal? Height { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập thị lực.")]
+    [Display(Name = "Thị lực (trên 10)")]
+    [Range(0, 10, ErrorMessage = "Thị lực phải là giá trị từ 0 đến 10.")]
     public int? Sight { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập thính lực.")]
+    [Display(Name = "Thính lực")]
+    [Range(0, 100, ErrorMessage = "Giá trị thính lực không hợp lệ.")]
     public int? Hearing { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập huyết áp.")]
+    [Display(Name = "Huyết áp (tâm thu)")]
+    [Range(40, 300, ErrorMessage = "Huyết áp không hợp lệ.")]
     public int? BloodPressure { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập thông tin dị ứng (nếu không có ghi 'Không').")]
+    [Display(Name = "Dị ứng")]
+    [StringLength(500, ErrorMessage = "Thông tin dị ứng không được vượt quá 500 ký tự.")]
     public string Allergy { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập bệnh mãn tính (nếu không có ghi 'Không').")]
+    [Display(Name = "Bệnh mãn tính")]
+    [StringLength(500, ErrorMessage = "Thông tin bệnh mãn tính không được vượt quá 500 ký tự.")]
     public string ChronicDisease { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập tiền sử bệnh án.")]
+    [Display(Name = "Tiền sử bệnh án")]
+    [StringLength(1000, ErrorMessage = "Tiền sử bệnh án không được vượt quá 1000 ký tự.")]
     public string MedicalHistory { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập tình trạng y tế hiện tại.")]
+    [Display(Name = "Tình trạng y tế hiện tại")]
+    [StringLength(1000, ErrorMessage = "Tình trạng y tế không được vượt quá 1000 ký tự.")]
     public string CurrentMedical { get; set; }
 
+    [Required(ErrorMessage = "Vui lòng nhập nhóm máu.")]
+    [Display(Name = "Nhóm máu")]
+    [StringLength(3, ErrorMessage = "Nhóm máu không hợp lệ.")]
+    [RegularExpression(@"^(A|B|AB|O)[+-]$", ErrorMessage = "Định dạng nhóm máu không đúng (ví dụ: A+, O-, AB+...).")]
     public string BloodType { get; set; }
 
+    [Display(Name = "Giới tính")]
     public bool Sex { get; set; }
 
-    public DateTime? DateOfBirth { get; set; }
+    [Display(Name = "Ngày sinh")]
+    [DataType(DataType.Date)]
+    public DateOnly? DateOfBirth { get; set; }
 
     public virtual StudentsHoaLq Student { get; set; }
 }

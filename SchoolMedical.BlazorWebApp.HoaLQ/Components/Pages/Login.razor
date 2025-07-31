@@ -1,8 +1,9 @@
 ﻿@page "/login"
+@using SchoolMedical.BlazorWebApp.HoaLQ.Components.Layout
 @using SchoolMedical.Repositories.HoaLQ.Auth
 @inject AuthenticationStateProvider authStateProvider
 @inject NavigationManager navigationManager
-
+@layout LoginLayout
 <div class="row justify-content-center">
     <div class="col-md-4">
         <div class="card shadow-sm">
@@ -35,6 +36,12 @@
             </div>
         </div>
     </div>
+    @if (isLoading)
+    {
+        <p  class="text-center">
+            <img src="https://i.pinimg.com/originals/41/83/c4/4183c45ac4d96bbd2933ff65810bf5f7.gif" alt="Loading..." />
+        </p>
+    }
 </div>
 
 
@@ -42,24 +49,25 @@
     private LoginModel loginModel = new();
     private string errorMessage;
 
+    private bool isLoading;
     private async Task HandleLogin()
     {
-        // Gọi hàm của bạn để kiểm tra user
+        isLoading = true;
         var user = await ServiceProvider.SystemUserAccountService.GetUserByUserNameAndPassword(loginModel.Username, loginModel.Password);
 
         if (user != null)
         {
-            // Ép kiểu authStateProvider về CustomAuthStateProvider để gọi hàm UpdateAuthenticationState
             var customAuthStateProvider = (CustomAuthStateProvider)authStateProvider;
             await customAuthStateProvider.UpdateAuthenticationState(user);
             
-            // Đăng nhập thành công, chuyển hướng về trang chủ
             navigationManager.NavigateTo("/");
         }
         else
         {
             errorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
         }
+
+        isLoading = false;
     }
 
     public class LoginModel

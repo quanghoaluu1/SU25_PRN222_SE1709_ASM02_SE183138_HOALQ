@@ -10,8 +10,8 @@ public interface IHealthProfilesHoaLqService
     Task<HealthProfilesHoaLq> GetByIdAsync(int id);
     Task<PaginatedList<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int? weight, int? height, bool? sex, int pageNumber, int pageSize);
     Task<List<HealthProfilesHoaLq>> FilterBySexAsync(bool? sex);
-    Task<HealthProfilesHoaLq> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq);
-    Task<HealthProfilesHoaLq> UpdateAsync(HealthProfilesHoaLq healthProfilesHoaLq);
+    Task<int> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq);
+    Task<int> UpdateAsync(HealthProfilesHoaLq healthProfilesHoaLq);
     Task<bool> RemoveAsync(int id);
 }
 public class HealthProfilesHoaLqService: IHealthProfilesHoaLqService
@@ -44,22 +44,20 @@ public class HealthProfilesHoaLqService: IHealthProfilesHoaLqService
         return await _unitOfWork.HealthProfilesHoaLqRepository.FilterBySexAsync(sex);
     }
     
-    public async Task<HealthProfilesHoaLq> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
+    public async Task<int> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
     {
         var createdProfile = await _unitOfWork.HealthProfilesHoaLqRepository.CreateAsync(healthProfilesHoaLq);
         Console.WriteLine(createdProfile);
         return createdProfile;
     }
     
-    public async Task<HealthProfilesHoaLq> UpdateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
+    public async Task<int> UpdateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
     {
-        var updatedProfile = await _unitOfWork.HealthProfilesHoaLqRepository.UpdateAsync(healthProfilesHoaLq);
-        return updatedProfile;
+        return await _unitOfWork.HealthProfilesHoaLqRepository.UpdateAsync(healthProfilesHoaLq);
     }
     
     public async Task<bool> RemoveAsync(int id)
     {
-        var removedProfile = await _unitOfWork.HealthProfilesHoaLqRepository.GetByIdAsync(id);
-        return await _unitOfWork.HealthProfilesHoaLqRepository.RemoveAsync(removedProfile);
+        return await _unitOfWork.HealthProfilesHoaLqRepository.RemoveAsync(id);
     }
 }

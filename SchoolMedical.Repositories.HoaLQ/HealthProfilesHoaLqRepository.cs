@@ -26,6 +26,7 @@ namespace SchoolMedical.Repositories.HoaLQ
         {
             return await _context.HealthProfilesHoaLqs
                 .Include(h => h.Student)
+                .OrderByDescending(h => h.HealthProfileHoaLqid)
                 .ToListAsync() ?? new List<HealthProfilesHoaLq>();
         }
 
@@ -37,11 +38,29 @@ namespace SchoolMedical.Repositories.HoaLQ
                 .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == id);
             return healthProfile ?? new HealthProfilesHoaLq();
         }
+        public async Task<bool> RemoveAsync(int id)
+        {
+            var local = _context.HealthProfilesHoaLqs.Local
+                .FirstOrDefault(h => h.HealthProfileHoaLqid == id);
+
+            if (local != null)
+            {
+                _context.Entry(local).State = EntityState.Detached;
+            }
+
+            var entityToDelete = await _context.HealthProfilesHoaLqs
+                .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == id);
+            if (entityToDelete == null) return false;
+            _context.HealthProfilesHoaLqs.Remove(entityToDelete);
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
         public async Task<PaginatedList<HealthProfilesHoaLq>> SearchAsync(string bloodType, string studentName, int? weight, int? height, bool? sex, int pageNumber, int pageSize)
         {
             var query = _context.HealthProfilesHoaLqs
                 .Include(p => p.Student)
+                .OrderByDescending(h => h.HealthProfileHoaLqid)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(bloodType))
@@ -81,52 +100,28 @@ namespace SchoolMedical.Repositories.HoaLQ
                     .Where(h => h.Sex.Equals(sex))
                     .ToListAsync();
         }
-        public new async Task<HealthProfilesHoaLq> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
-        {
-            var entity = _context.HealthProfilesHoaLqs.Add(healthProfilesHoaLq);
-            await _context.SaveChangesAsync();
-            var result = await _context.HealthProfilesHoaLqs
-                .Include(h => h.Student) // <-- Dòng quan trọng để lấy dữ liệu Student
-                .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == healthProfilesHoaLq.HealthProfileHoaLqid);
+        public new async Task<int> CreateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
+        { 
+            _context.HealthProfilesHoaLqs.Add(healthProfilesHoaLq);
+            return await _context.SaveChangesAsync();
+            // var result = await _context.HealthProfilesHoaLqs
+            //     .Include(h => h.Student) // <-- Dòng quan trọng để lấy dữ liệu Student
+            //     .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == healthProfilesHoaLq.HealthProfileHoaLqid);
 
-            return result;
         }
 
-        public new async Task<HealthProfilesHoaLq> UpdateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
-        {
-            var entity = _context.HealthProfilesHoaLqs.Update(healthProfilesHoaLq);
-            await _context.SaveChangesAsync();
+        public new async Task<int> UpdateAsync(HealthProfilesHoaLq healthProfilesHoaLq)
+        { 
+            var local = _context.HealthProfilesHoaLqs.Local
+                .FirstOrDefault(entry => entry.HealthProfileHoaLqid == healthProfilesHoaLq.HealthProfileHoaLqid);
 
-            // var result = await _context.HealthProfilesHoaLqs
-            //     .Where(h => h.HealthProfileHoaLqid == entity.Entity.HealthProfileHoaLqid)
-            //     .Select(h => new HealthProfilesHoaLq
-            //     {
-            //         HealthProfileHoaLqid = h.HealthProfileHoaLqid,
-            //         Weight = h.Weight,
-            //         Height = h.Height,
-            //         BloodPressure = h.BloodPressure,
-            //         Allergy = h.Allergy,
-            //         ChronicDisease = h.ChronicDisease,
-            //         MedicalHistory = h.MedicalHistory,
-            //         CurrentMedical = h.CurrentMedical,
-            //         BloodType = h.BloodType,
-            //         Sight = h.Sight,
-            //         Hearing = h.Hearing,
-            //         Sex = h.Sex,
-            //         DateOfBirth = h.DateOfBirth,
-            //         StudentId = h.StudentId,
-            //
-            //         Student = new StudentsHoaLq()
-            //         {
-            //             StudentsHoaLqid = h.Student.StudentsHoaLqid,
-            //             StudentFullName = h.Student.StudentFullName
-            //         }
-            //     })
-            //     .FirstOrDefaultAsync();
-            var result = await _context.HealthProfilesHoaLqs
-                .Include(h => h.Student) // <-- Dòng quan trọng để lấy dữ liệu Student
-                .FirstOrDefaultAsync(h => h.HealthProfileHoaLqid == healthProfilesHoaLq.HealthProfileHoaLqid);
-            return result;
+            if (local != null)
+            {
+                _context.Entry(local).State = EntityState.Detached;
+            }
+            healthProfilesHoaLq.Student = null;
+            _context.HealthProfilesHoaLqs.Update(healthProfilesHoaLq);
+            return await _context.SaveChangesAsync();
         }
     }
 }

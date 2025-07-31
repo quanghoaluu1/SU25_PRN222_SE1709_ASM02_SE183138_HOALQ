@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolMedical.Services.HoaLQ")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55d6d72f0675e5ae584db7bbf628f8da45a30906")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09b4966d6cc4eab9bef36503dfd00fa34ff10fe4")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolMedical.Services.HoaLQ")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolMedical.Services.HoaLQ")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

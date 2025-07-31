@@ -162,14 +162,10 @@
             ? await ServiceProvider.HealthProfilesHoaLqService.UpdateAsync(HealthProfilesHoaLq)
             : await ServiceProvider.HealthProfilesHoaLqService.CreateAsync(HealthProfilesHoaLq);
         HealthProfilesHoaLqList.Insert(0, HealthProfilesHoaLq);
-        if (result is not null)
+        if (result > 0)
         {
             NavigationManager.NavigateTo("/HealthProfiles/HealthProfilesList");
         }
     }
 
-    private void UpdateBySignalR()
-    {
-        // Your SignalR update logic here
-    }
 }

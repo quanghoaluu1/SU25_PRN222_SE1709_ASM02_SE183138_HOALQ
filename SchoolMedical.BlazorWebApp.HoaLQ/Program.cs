@@ -12,15 +12,11 @@ builder.Services.AddRazorComponents()
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        // Đường dẫn đến trang đăng nhập. Khi người dùng chưa xác thực cố gắng truy cập
-        // một trang được bảo vệ, hệ thống sẽ tự động chuyển hướng họ đến đây.
+
         options.LoginPath = "/login";
 
-        // (Tùy chọn) Thời gian sống của cookie xác thực
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 
-        // (Tùy chọn) Đường dẫn khi người dùng đã đăng nhập nhưng không có quyền truy cập
-        // vào một tài nguyên cụ thể (lỗi 403 Forbidden).
         options.AccessDeniedPath = "/access-denied"; 
     });
 builder.Services.AddAuthorizationCore();
@@ -38,7 +34,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();

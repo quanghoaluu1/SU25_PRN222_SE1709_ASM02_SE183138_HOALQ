@@ -11,8 +11,6 @@
 *.sln.docstates
 
 .idea/
-appsettings.Development.json
-appsettings.json
 
 MetroTicketBE.Infrastructure/Migrations
 # User-specific files (MonoDevelop/Xamarin Studio)

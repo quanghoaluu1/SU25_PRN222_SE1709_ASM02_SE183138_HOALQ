@@ -116,7 +116,6 @@ else
         var confirm = await JsRuntime.InvokeAsync<bool>("confirm", "Bạn có chắc muốn xóa hồ sơ này không?");
         if (confirm)
         {
-            
             await ServiceProvider.HealthProfilesHoaLqService.RemoveAsync(HealthProfileHoaLqid);
             NavigationManager.NavigateTo("/HealthProfiles/HealthProfilesList");
         }

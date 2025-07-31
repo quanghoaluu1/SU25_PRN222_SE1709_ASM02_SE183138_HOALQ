@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIZWFsdGhQcm9maWxlc1xIZWFsdGhQcm9maWxlc0hvYUxxTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/quang/OneDrive/Máy tính/SU25_PRN222_SE1709_ASM02_SE183138_HOALQ/SchoolMedical.BlazorWebApp.HoaLQ/Components/Layout/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTG9naW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/quang/OneDrive/Máy tính/SU25_PRN222_SE1709_ASM02_SE183138_HOALQ/SchoolMedical.BlazorWebApp.HoaLQ/Components/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

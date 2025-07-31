@@ -21,8 +21,6 @@ public class CustomAuthStateProvider: AuthenticationStateProvider
     {
         try
         {
-            // Tạm thời, chúng ta sẽ không dùng persistent login (lưu session)
-            // Trong một ứng dụng thật, bạn sẽ đọc token từ localStorage/sessionStorage ở đây
             return await Task.FromResult(new AuthenticationState(_anonymous));
         }
         catch
@@ -37,7 +35,6 @@ public class CustomAuthStateProvider: AuthenticationStateProvider
 
         if (user != null)
         {
-            // Tạo claims cho người dùng đã đăng nhập
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserAccountId.ToString()),
@@ -48,17 +45,13 @@ public class CustomAuthStateProvider: AuthenticationStateProvider
 
             claimsPrincipal = new ClaimsPrincipal(identity);
             
-            // Trong ứng dụng thật, bạn sẽ lưu token vào đây
-            // await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", "your_jwt_token_here");
         }
         else
         {
             claimsPrincipal = _anonymous;
-            // Xóa token khi logout
-            // await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+            
         }
 
-        // Thông báo cho Blazor rằng trạng thái đăng nhập đã thay đổi
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
     }
 }
